@@ -67,4 +67,6 @@ public class User {
         this.sex = sex;
         this.address = address;
     }
+    public User(){}
+
 }

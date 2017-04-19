@@ -28,12 +28,14 @@ public class UserController {
     @RequestMapping("insert")
     public int insert(java.lang.String username, java.lang.String birthday, java.lang.String sex, java.lang.String address){
         //http://localhost:8080/dd/insert?username=qiao&sex=1&birthday="1991"&address="beijingft"
-        User user = new User();
-        user.setUsername(username);
-        user.setSex(sex);
-        user.setBirthday(new Date());
-        user.setAddress(address);
+        User user = new User(username,new Date(),sex,address);
         return userMapper.insert(user);
     }
 
+    @RequestMapping("updateByPrimaryKey")
+    public int updateByPrimaryKey(Integer id, java.lang.String username, java.lang.String sex, java.lang.String address, java.lang.String birthday){
+        //http://localhost:8080/dd/updateByPrimaryKey?id=27&username=qiao&sex=1&birthday=1991&address=beijingft
+        User user = new User(id,username,new Date(),sex,address);
+        return userMapper.updateByPrimaryKey(user);
+    }
 }

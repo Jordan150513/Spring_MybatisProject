@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.fang.DAO.UserMapper">
+  <!--自定义了一个resultMap-->
   <resultMap id="BaseResultMap" type="com.fang.model.User">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
@@ -8,10 +9,16 @@
     <result column="sex" jdbcType="CHAR" property="sex" />
     <result column="address" jdbcType="VARCHAR" property="address" />
   </resultMap>
+
+  <!--定义了一个sql片段-->
   <sql id="Base_Column_List">
     id, username, birthday, sex, address
   </sql>
+<!--分页select-->
+  <select id="selectByPage" parameterType="" resultMap="">
 
+  </select>
+  
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -23,12 +30,14 @@
     delete from user
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.fang.model.User">
     insert into user (id, username, birthday, 
       sex, address)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
       #{sex,jdbcType=CHAR}, #{address,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" parameterType="com.fang.model.User">
     insert into user
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -66,6 +75,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.fang.model.User">
     update user
     <set>
@@ -84,6 +94,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.fang.model.User">
     update user
     set username = #{username,jdbcType=VARCHAR},
@@ -92,4 +103,5 @@
       address = #{address,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

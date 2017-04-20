@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fang.DAO.RefreshConsumptionMapper">
+  <resultMap id="BaseResultMap" type="com.fang.model.RefreshConsumption">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="refreshPlanId" jdbcType="INTEGER" property="refreshplanid" />
+    <result column="caseId" jdbcType="INTEGER" property="caseid" />
+    <result column="companyId" jdbcType="INTEGER" property="companyid" />
+    <result column="refreshType" jdbcType="VARCHAR" property="refreshtype" />
+    <result column="refreshTime" jdbcType="TIMESTAMP" property="refreshtime" />
+    <result column="soufunId" jdbcType="INTEGER" property="soufunid" />
+    <result column="createTime" jdbcType="TIME" property="createtime" />
+    <result column="isDel" jdbcType="BIT" property="isdel" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, refreshPlanId, caseId, companyId, refreshType, refreshTime, soufunId, createTime, 
+    isDel
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from refreshConsumption
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from refreshConsumption
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fang.model.RefreshConsumption">
+    insert into refreshConsumption (id, refreshPlanId, caseId, 
+      companyId, refreshType, refreshTime, 
+      soufunId, createTime, isDel
+      )
+    values (#{id,jdbcType=INTEGER}, #{refreshplanid,jdbcType=INTEGER}, #{caseid,jdbcType=INTEGER}, 
+      #{companyid,jdbcType=INTEGER}, #{refreshtype,jdbcType=VARCHAR}, #{refreshtime,jdbcType=TIMESTAMP}, 
+      #{soufunid,jdbcType=INTEGER}, #{createtime,jdbcType=TIME}, #{isdel,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fang.model.RefreshConsumption">
+    insert into refreshConsumption
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="refreshplanid != null">
+        refreshPlanId,
+      </if>
+      <if test="caseid != null">
+        caseId,
+      </if>
+      <if test="companyid != null">
+        companyId,
+      </if>
+      <if test="refreshtype != null">
+        refreshType,
+      </if>
+      <if test="refreshtime != null">
+        refreshTime,
+      </if>
+      <if test="soufunid != null">
+        soufunId,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+      <if test="isdel != null">
+        isDel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="refreshplanid != null">
+        #{refreshplanid,jdbcType=INTEGER},
+      </if>
+      <if test="caseid != null">
+        #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="refreshtype != null">
+        #{refreshtype,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshtime != null">
+        #{refreshtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="soufunid != null">
+        #{soufunid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIME},
+      </if>
+      <if test="isdel != null">
+        #{isdel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fang.model.RefreshConsumption">
+    update refreshConsumption
+    <set>
+      <if test="refreshplanid != null">
+        refreshPlanId = #{refreshplanid,jdbcType=INTEGER},
+      </if>
+      <if test="caseid != null">
+        caseId = #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null">
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="refreshtype != null">
+        refreshType = #{refreshtype,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshtime != null">
+        refreshTime = #{refreshtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="soufunid != null">
+        soufunId = #{soufunid,jdbcType=INTEGER},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIME},
+      </if>
+      <if test="isdel != null">
+        isDel = #{isdel,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fang.model.RefreshConsumption">
+    update refreshConsumption
+    set refreshPlanId = #{refreshplanid,jdbcType=INTEGER},
+      caseId = #{caseid,jdbcType=INTEGER},
+      companyId = #{companyid,jdbcType=INTEGER},
+      refreshType = #{refreshtype,jdbcType=VARCHAR},
+      refreshTime = #{refreshtime,jdbcType=TIMESTAMP},
+      soufunId = #{soufunid,jdbcType=INTEGER},
+      createTime = #{createtime,jdbcType=TIME},
+      isDel = #{isdel,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

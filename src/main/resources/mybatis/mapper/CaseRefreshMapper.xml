@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fang.DAO.CaseRefreshMapper">
+  <resultMap id="BaseResultMap" type="com.fang.model.CaseRefresh">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="caseId" jdbcType="INTEGER" property="caseid" />
+    <result column="companyId" jdbcType="INTEGER" property="companyid" />
+    <result column="refreshCount" jdbcType="INTEGER" property="refreshcount" />
+    <result column="modifyTime" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="createTime" jdbcType="TIME" property="createtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, caseId, companyId, refreshCount, modifyTime, createTime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from caseRefresh
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from caseRefresh
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.fang.model.CaseRefresh">
+    insert into caseRefresh (id, caseId, companyId, 
+      refreshCount, modifyTime, createTime
+      )
+    values (#{id,jdbcType=INTEGER}, #{caseid,jdbcType=INTEGER}, #{companyid,jdbcType=INTEGER}, 
+      #{refreshcount,jdbcType=INTEGER}, #{modifytime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIME}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.fang.model.CaseRefresh">
+    insert into caseRefresh
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="caseid != null">
+        caseId,
+      </if>
+      <if test="companyid != null">
+        companyId,
+      </if>
+      <if test="refreshcount != null">
+        refreshCount,
+      </if>
+      <if test="modifytime != null">
+        modifyTime,
+      </if>
+      <if test="createtime != null">
+        createTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="caseid != null">
+        #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null">
+        #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="refreshcount != null">
+        #{refreshcount,jdbcType=INTEGER},
+      </if>
+      <if test="modifytime != null">
+        #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        #{createtime,jdbcType=TIME},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.fang.model.CaseRefresh">
+    update caseRefresh
+    <set>
+      <if test="caseid != null">
+        caseId = #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="companyid != null">
+        companyId = #{companyid,jdbcType=INTEGER},
+      </if>
+      <if test="refreshcount != null">
+        refreshCount = #{refreshcount,jdbcType=INTEGER},
+      </if>
+      <if test="modifytime != null">
+        modifyTime = #{modifytime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null">
+        createTime = #{createtime,jdbcType=TIME},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.fang.model.CaseRefresh">
+    update caseRefresh
+    set caseId = #{caseid,jdbcType=INTEGER},
+      companyId = #{companyid,jdbcType=INTEGER},
+      refreshCount = #{refreshcount,jdbcType=INTEGER},
+      modifyTime = #{modifytime,jdbcType=TIMESTAMP},
+      createTime = #{createtime,jdbcType=TIME}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

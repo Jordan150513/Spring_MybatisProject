@@ -1,6 +1,7 @@
 package com.fang.DAO;
 
 import com.fang.model.RefreshPlan;
+import com.fang.model.RefreshPlanCus;
 
 import java.util.List;
 
@@ -20,4 +21,6 @@ public interface RefreshPlanMapper {
     List<RefreshPlan> selectAllRefreshPlans();
 
     List<RefreshPlan> selectRefreshPlanPage(RefreshPlan record);
+
+    RefreshPlanCus selectRefreshPlanPageCus(RefreshPlanCus refreshPlanCus);
 }

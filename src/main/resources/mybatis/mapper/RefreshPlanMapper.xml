@@ -28,6 +28,19 @@
     <result column="pageNO" jdbcType="INTEGER" property="pageNO" />
 
   </resultMap>
+
+  <resultMap id="PagesResultMapCus" type="com.fang.model.RefreshPlanCus">
+    <id column="id" jdbcType="INTEGER" property="list.id" />
+    <result column="count" jdbcType="INTEGER" property="count" />
+    <result column="caseId" jdbcType="INTEGER" property="list.caseid" />
+    <result column="companyId" jdbcType="INTEGER" property="list.companyid" />
+    <result column="refreshTime" jdbcType="TIMESTAMP" property="list.refreshtime" />
+    <result column="createTime" jdbcType="TIME" property="list.createtime" />
+    <result column="state" jdbcType="VARCHAR" property="list.state" />
+    <result column="soufunId" jdbcType="INTEGER" property="list.soufunid" />
+    <result column="remark" jdbcType="VARCHAR" property="list.remark" />
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, caseId, companyId, refreshTime, createTime, state, soufunId, remark
   </sql>
@@ -45,8 +58,17 @@
     from refreshPlan limit #{fromIndex,jdbcType=INTEGER},#{toIndex,jdbcType=INTEGER}
   </select>
 
+  <!--分页查找刷新计划-->
+  <select id="selectRefreshPlanPageCus" parameterType="com.fang.model.RefreshPlanCus" resultMap="PagesResultMapCus">
+    select
+    <include refid="Base_Column_List" />
+    ,(select count(id) from refreshPlan) as count
+    from refreshPlan limit #{fromIndex,jdbcType=INTEGER},#{toIndex,jdbcType=INTEGER}
+  </select>
+
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
+    select
     <include refid="Base_Column_List" />
     from refreshPlan
     where id = #{id,jdbcType=INTEGER}

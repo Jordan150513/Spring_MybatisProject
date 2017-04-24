@@ -2,6 +2,7 @@ package com.fang.service;
 
 import com.fang.DAO.RefreshPlanMapper;
 import com.fang.model.RefreshPlan;
+import com.fang.model.RefreshPlanCus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,5 +42,8 @@ public class RefreshPlanService {
 
     public List<RefreshPlan> selectRefreshPlanPage(RefreshPlan record){
         return refreshPlanMapper.selectRefreshPlanPage(record);
+    }
+    public RefreshPlanCus selectRefreshPlanPageCus(RefreshPlanCus refreshPlanCus){
+        return refreshPlanMapper.selectRefreshPlanPageCus(refreshPlanCus);
     }
 }

@@ -46,4 +46,5 @@ public class UserController {
 //        http://localhost:8090/dd/deleteByPrimaryKey?id=27
         return userMapper.deleteByPrimaryKey(id);
     }
+
 }

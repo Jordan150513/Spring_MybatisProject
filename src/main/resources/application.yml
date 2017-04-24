@@ -6,7 +6,7 @@ server:
 
 #mybatis的相关配置
 mybatis:
-  type-aliases-package: com.fang.model
+  type-aliases-package: com.fang.model/*
   config-location: classpath:mybatis/SqlMapConfig.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
 

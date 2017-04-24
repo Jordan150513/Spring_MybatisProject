@@ -11,15 +11,39 @@
     <result column="soufunId" jdbcType="INTEGER" property="soufunid" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
+  <resultMap id="PagesResultMap" type="com.fang.model.RefreshPlan">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="caseId" jdbcType="INTEGER" property="caseid" />
+    <result column="companyId" jdbcType="INTEGER" property="companyid" />
+    <result column="refreshTime" jdbcType="TIMESTAMP" property="refreshtime" />
+    <result column="createTime" jdbcType="TIME" property="createtime" />
+    <result column="state" jdbcType="VARCHAR" property="state" />
+    <result column="soufunId" jdbcType="INTEGER" property="soufunid" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+
+    <result column="count" jdbcType="INTEGER" property="count" />
+
+    <result column="pageCount" jdbcType="INTEGER" property="pageCount" />
+    <result column="pageSize" jdbcType="INTEGER" property="pageSize" />
+    <result column="pageNO" jdbcType="INTEGER" property="pageNO" />
+
+  </resultMap>
   <sql id="Base_Column_List">
     id, caseId, companyId, refreshTime, createTime, state, soufunId, remark
   </sql>
-<!--新增加一个筛选出全部的刷新计划-->
+<!--查找全部的刷新计划-->
   <select id="selectAllRefreshPlans" resultMap="BaseResultMap">
   select
   <include refid="Base_Column_List" />
   from refreshPlan
 </select>
+  <!--分页查找刷新计划-->
+  <select id="selectRefreshPlanPage" parameterType="com.fang.model.RefreshPlan" resultMap="PagesResultMap">
+    select
+    <include refid="Base_Column_List" />
+  ,(select count(id) from refreshPlan) as count
+     from refreshPlan limit #{fromIndex,jdbcType=INTEGER},#{toIndex,jdbcType=INTEGER}
+  </select>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

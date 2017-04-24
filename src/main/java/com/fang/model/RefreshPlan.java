@@ -2,7 +2,7 @@ package com.fang.model;
 
 import java.util.Date;
 
-public class RefreshPlan {
+public class RefreshPlan extends PagesSelect{
     private Integer id;
 
     private Integer caseid;

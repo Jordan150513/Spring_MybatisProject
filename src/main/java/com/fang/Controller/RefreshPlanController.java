@@ -36,4 +36,14 @@ public class RefreshPlanController {
     public List<RefreshPlan> selectAllRefreshPlans(){
         return refreshPlanService.selectAllRefreshPlans();
     }
+
+    //      http://localhost:8099/dd/RefreshPlan/selectRefreshPlanPage?fromIndex=0&toIndex=3
+    //      http://localhost:8099/dd/RefreshPlan/selectRefreshPlanPage?pageNO=1&pageSize=3
+    @RequestMapping("RefreshPlan/selectRefreshPlanPage")
+    public List<RefreshPlan> selectRefreshPlanPage(int fromIndex,int toIndex){
+        RefreshPlan record = new RefreshPlan();
+        record.setFromIndex(fromIndex);
+        record.setToIndex(toIndex);
+        return refreshPlanService.selectRefreshPlanPage(record);
+    }
 }

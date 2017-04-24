@@ -4,7 +4,7 @@ import com.fang.DAO.RefreshPlanMapper;
 import com.fang.model.RefreshPlan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
+
 
 import java.util.List;
 
@@ -37,5 +37,9 @@ public class RefreshPlanService {
 
     public List<RefreshPlan> selectAllRefreshPlans(){
         return refreshPlanMapper.selectAllRefreshPlans();
+    }
+
+    public List<RefreshPlan> selectRefreshPlanPage(RefreshPlan record){
+        return refreshPlanMapper.selectRefreshPlanPage(record);
     }
 }

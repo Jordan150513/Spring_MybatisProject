@@ -18,4 +18,6 @@ public interface RefreshPlanMapper {
     int updateByPrimaryKey(RefreshPlan record);
 
     List<RefreshPlan> selectAllRefreshPlans();
+
+    List<RefreshPlan> selectRefreshPlanPage(RefreshPlan record);
 }

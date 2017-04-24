@@ -1,6 +1,6 @@
 #服务的相关配置
 server:
-  port: 8080
+  port: 8090
   context-path: /dd
 
 
@@ -21,8 +21,8 @@ spring:
 
 
 #自定义的属性
-student:
-  name: 老王
-  age: 18
+#student:
+ # name: 老王
+  #age: 18
 
 

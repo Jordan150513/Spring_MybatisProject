@@ -1,6 +1,6 @@
 #服务的相关配置
 server:
-  port: 8090
+  port: 8099
   context-path: /dd
 
 
@@ -19,10 +19,5 @@ spring:
     username: root
     password: 1234
 
-
-#自定义的属性
-#student:
- # name: 老王
-  #age: 18
 
 

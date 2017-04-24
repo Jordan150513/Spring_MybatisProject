@@ -38,12 +38,22 @@ public class RefreshPlanController {
     }
 
     //      http://localhost:8099/dd/RefreshPlan/selectRefreshPlanPage?fromIndex=0&toIndex=3
-    //      http://localhost:8099/dd/RefreshPlan/selectRefreshPlanPage?pageNO=1&pageSize=3
     @RequestMapping("RefreshPlan/selectRefreshPlanPage")
     public List<RefreshPlan> selectRefreshPlanPage(int fromIndex,int toIndex){
         RefreshPlan record = new RefreshPlan();
         record.setFromIndex(fromIndex);
         record.setToIndex(toIndex);
+        return refreshPlanService.selectRefreshPlanPage(record);
+    }
+
+    //      http://localhost:8099/dd/RefreshPlan/selectRefreshPlanPageNO?pageNO=1&pageSize=3
+    @RequestMapping("RefreshPlan/selectRefreshPlanPageNO")
+    public List<RefreshPlan> selectRefreshPlanPageNO(int pageNO,int pageSize){
+        RefreshPlan record = new RefreshPlan();
+        record.setPageNO(pageNO);
+        record.setPageSize(pageSize);
+        record.setFromIndex((pageNO-1)*pageSize);// 这个转换思维 和 时机
+        record.setToIndex(pageNO*pageSize);
         return refreshPlanService.selectRefreshPlanPage(record);
     }
 }

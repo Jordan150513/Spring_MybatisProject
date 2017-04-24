@@ -9,8 +9,6 @@ public class PagesSelect {
     private Integer pageSize;
     private Integer count;
 
-    private Integer pageCount;
-
     private Integer fromIndex;
     private Integer toIndex;
 
@@ -22,29 +20,14 @@ public class PagesSelect {
         return pageSize;
     }
 
-    public Integer getPageCount() {
-        return pageCount;
-    }
 
     public void setPageNO(Integer pageNO) {
         this.pageNO = pageNO;
-        if (this.pageSize!=null){
-            this.fromIndex = (this.pageNO-1)*pageCount;
-            this.toIndex = this.pageNO*this.pageCount;
-        }
     }
 
     public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
-        if (this.pageNO!=null){
-            this.fromIndex = (this.pageNO-1)*pageCount;
-            this.toIndex = this.pageNO*this.pageCount;
-        }
 
-    }
-
-    public void setPageCount(Integer pageCount) {
-        this.pageCount = pageCount;
     }
 
     public Integer getCount() {
@@ -60,9 +43,7 @@ public class PagesSelect {
     }
 
     public void setFromIndex(Integer fromIndex) {
-//        if (this.pageNO!=null && this.pageSize!=null){
-//            this.fromIndex = (this.pageNO-1)*pageCount;
-//        }
+
         this.fromIndex = fromIndex;
 
     }
@@ -72,9 +53,6 @@ public class PagesSelect {
     }
 
     public void setToIndex(Integer toIndex) {
-//        if (this.pageSize!=null && this.pageNO!=null){
-//            this.toIndex = this.pageNO*this.pageCount;
-//        }
 
         this.toIndex = toIndex;
     }

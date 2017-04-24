@@ -30,15 +30,25 @@
   </resultMap>
 
   <resultMap id="PagesResultMapCus" type="com.fang.model.RefreshPlanCus">
-    <id column="id" jdbcType="INTEGER" property="list.id" />
+    <!--<id column="id" jdbcType="INTEGER" property="list.id" />-->
     <result column="count" jdbcType="INTEGER" property="count" />
-    <result column="caseId" jdbcType="INTEGER" property="list.caseid" />
-    <result column="companyId" jdbcType="INTEGER" property="list.companyid" />
-    <result column="refreshTime" jdbcType="TIMESTAMP" property="list.refreshtime" />
-    <result column="createTime" jdbcType="TIME" property="list.createtime" />
-    <result column="state" jdbcType="VARCHAR" property="list.state" />
-    <result column="soufunId" jdbcType="INTEGER" property="list.soufunid" />
-    <result column="remark" jdbcType="VARCHAR" property="list.remark" />
+    <!--<result column="caseId" jdbcType="INTEGER" property="list.caseid" />-->
+    <!--<result column="companyId" jdbcType="INTEGER" property="list.companyid" />-->
+    <!--<result column="refreshTime" jdbcType="TIMESTAMP" property="list.refreshtime" />-->
+    <!--<result column="createTime" jdbcType="TIME" property="list.createtime" />-->
+    <!--<result column="state" jdbcType="VARCHAR" property="list.state" />-->
+    <!--<result column="soufunId" jdbcType="INTEGER" property="list.soufunid" />-->
+    <!--<result column="remark" jdbcType="VARCHAR" property="list.remark" />-->
+    <association property="list" resultMap="BaseResultMap" >
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="caseId" jdbcType="INTEGER" property="caseid" />
+      <result column="companyId" jdbcType="INTEGER" property="companyid" />
+      <result column="refreshTime" jdbcType="TIMESTAMP" property="refreshtime" />
+      <result column="createTime" jdbcType="TIME" property="createtime" />
+      <result column="state" jdbcType="VARCHAR" property="state" />
+      <result column="soufunId" jdbcType="INTEGER" property="soufunid" />
+      <result column="remark" jdbcType="VARCHAR" property="remark" />
+    </association>
   </resultMap>
 
   <sql id="Base_Column_List">

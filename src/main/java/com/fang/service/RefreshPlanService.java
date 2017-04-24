@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 /**
  * Created by qiaodandan on 2017/4/24.
  */
@@ -31,5 +33,9 @@ public class RefreshPlanService {
         plan.setRemark(remark);
         plan.setSoufunid(soufunid);
         return refreshPlanMapper.insert(plan);
+    }
+
+    public List<RefreshPlan> selectAllRefreshPlans(){
+        return refreshPlanMapper.selectAllRefreshPlans();
     }
 }

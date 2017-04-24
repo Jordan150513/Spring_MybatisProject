@@ -14,6 +14,13 @@
   <sql id="Base_Column_List">
     id, caseId, companyId, refreshTime, createTime, state, soufunId, remark
   </sql>
+<!--新增加一个筛选出全部的刷新计划-->
+  <select id="selectAllRefreshPlans" resultMap="BaseResultMap">
+  select
+  <include refid="Base_Column_List" />
+  from refreshPlan
+</select>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

@@ -2,6 +2,8 @@ package com.fang.DAO;
 
 import com.fang.model.RefreshPlan;
 
+import java.util.List;
+
 public interface RefreshPlanMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,6 @@ public interface RefreshPlanMapper {
     int updateByPrimaryKeySelective(RefreshPlan record);
 
     int updateByPrimaryKey(RefreshPlan record);
+
+    List<RefreshPlan> selectAllRefreshPlans();
 }

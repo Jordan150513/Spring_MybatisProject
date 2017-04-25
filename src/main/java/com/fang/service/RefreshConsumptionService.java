@@ -35,7 +35,7 @@ public class RefreshConsumptionService {
     }
 
     // 获取带总数的某公司的消费记录
-    public RefreshConsumptionCusPages selectAssociatedByCompanyIdPages(HashMap hashMap){
+    public List<RefreshConsumptionCus> selectAssociatedByCompanyIdPages(HashMap hashMap){
         return refreshConsumptionMapper.selectAssociatedByCompanyIdPages(hashMap);
     }
 }

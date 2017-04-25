@@ -60,16 +60,19 @@ public class RefreshConsumptionController {
         return restConsumptionService.selectAssociatedCountByCompanyId(companyId);
     }
 
-    //      http://localhost:8055/dd/RefreshConsumption/selectAssociatedByCompanyId?companyId=1&pageNO=1&pageSize=3
+    //      http://localhost:8055/dd/RefreshConsumption/RefreshConsumptionCusPages?companyId=1&pageNO=1&pageSize=3
     @RequestMapping("RefreshConsumption/RefreshConsumptionCusPages")
     public RefreshConsumptionCusPages selectAssociatedByCompanyIdPages(Integer companyId,Integer pageNO, Integer pageSize){
             HashMap<String,Integer> hashMap = new HashMap<String,Integer>();
             hashMap.put("companyId",companyId);
-            hashMap.put("pageNO",pageNO);
-            hashMap.put("pageSize",pageSize);
-        RefreshConsumptionCusPages refreshConsumptionCusPages =  restConsumptionService.selectAssociatedByCompanyIdPages(hashMap);
+            hashMap.put("fromIndex",(pageNO-1)*pageSize);
+            hashMap.put("toIndex",pageSize*pageSize);
+        List<RefreshConsumptionCus> list=  restConsumptionService.selectAssociatedByCompanyIdPages(hashMap);
+        RefreshConsumptionCusPages refreshConsumptionCusPages = new RefreshConsumptionCusPages();
+        refreshConsumptionCusPages.setList(list);
         refreshConsumptionCusPages.setPageNO(pageNO);
         refreshConsumptionCusPages.setPageSize(pageSize);
+        refreshConsumptionCusPages.setCount(selectAssociatedCountByCompanyId(companyId));
         return refreshConsumptionCusPages;
     }
 

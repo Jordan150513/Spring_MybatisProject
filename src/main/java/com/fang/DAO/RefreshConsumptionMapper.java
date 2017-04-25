@@ -22,7 +22,7 @@ public interface RefreshConsumptionMapper {
 
     List<RefreshConsumptionCus>  selectAssociatedByCompanyId(Integer id);
 
-    RefreshConsumptionCusPages selectAssociatedByCompanyIdPages(HashMap hashMap);
-
     public Integer selectAssociatedCountByCompanyId(Integer companyId);
+
+    public List<RefreshConsumptionCus> selectAssociatedByCompanyIdPages(HashMap hashMap);
 }

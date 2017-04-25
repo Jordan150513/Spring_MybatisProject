@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.fang.service.RefreshPlanService;
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -59,17 +60,29 @@ public class RefreshPlanController {
 //    }
 
     //  http://localhost:8055/dd/RefreshPlan/selectRefreshPlanPageCus?pageNO=1&pageSize=3
-    @RequestMapping("RefreshPlan/selectRefreshPlanPageCus")
-    RefreshPlanCus selectRefreshPlanPageCus(int pageNO,int pageSize){
-        RefreshPlanCus refreshPlanCus = new RefreshPlanCus();
+//    @RequestMapping("RefreshPlan/selectRefreshPlanPageCus")
+//    RefreshPlanCus selectRefreshPlanPageCus(int pageNO,int pageSize){
+//        RefreshPlanCus refreshPlanCus = new RefreshPlanCus();
+//        refreshPlanCus.setPageNO(pageNO);
+//        refreshPlanCus.setPageSize(pageSize);
+//        refreshPlanCus.setFromIndex((pageNO-1)*pageSize);
+//        refreshPlanCus.setToIndex(pageNO*pageSize);
+//        RefreshPlanCus refreshPlanCus1 =  refreshPlanService.selectRefreshPlanPageCus(refreshPlanCus);
+//        refreshPlanCus1.setPageSize(pageSize);
+//        refreshPlanCus1.setPageNO(pageNO);
+//        return refreshPlanCus1;
+//    }
+
+    //  http://localhost:8055/dd/RefreshPlan/selectRefreshPlanPageCusHashMap?pageNO=1&pageSize=3
+    @RequestMapping("RefreshPlan/selectRefreshPlanPageCusHashMap")
+    RefreshPlanCus selectRefreshPlanPageCusHashMap(int pageNO,int pageSize){
+        HashMap<String,Integer> hashMap = new HashMap();
+        hashMap.put("fromIndex",(pageNO-1)*pageSize);
+        hashMap.put("toIndex",pageNO*pageSize);
+        RefreshPlanCus refreshPlanCus = refreshPlanService.selectRefreshPlanPageCusHashMap(hashMap);
         refreshPlanCus.setPageNO(pageNO);
         refreshPlanCus.setPageSize(pageSize);
-        refreshPlanCus.setFromIndex((pageNO-1)*pageSize);
-        refreshPlanCus.setToIndex(pageNO*pageSize);
-        RefreshPlanCus refreshPlanCus1 =  refreshPlanService.selectRefreshPlanPageCus(refreshPlanCus);
-        refreshPlanCus1.setPageSize(pageSize);
-        refreshPlanCus1.setPageNO(pageNO);
-        return refreshPlanCus1;
+        return refreshPlanCus;
     }
 
 }

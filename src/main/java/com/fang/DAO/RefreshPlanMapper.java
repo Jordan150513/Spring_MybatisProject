@@ -3,6 +3,7 @@ package com.fang.DAO;
 import com.fang.model.RefreshPlan;
 import com.fang.model.RefreshPlanCus;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface RefreshPlanMapper {
@@ -23,4 +24,5 @@ public interface RefreshPlanMapper {
     List<RefreshPlan> selectRefreshPlanPage(RefreshPlan record);
 
     RefreshPlanCus selectRefreshPlanPageCus(RefreshPlanCus refreshPlanCus);
+    RefreshPlanCus selectRefreshPlanPageCusHashMap(HashMap hashMap);
 }

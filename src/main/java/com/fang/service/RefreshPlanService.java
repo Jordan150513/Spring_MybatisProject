@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -45,5 +46,9 @@ public class RefreshPlanService {
     }
     public RefreshPlanCus selectRefreshPlanPageCus(RefreshPlanCus refreshPlanCus){
         return refreshPlanMapper.selectRefreshPlanPageCus(refreshPlanCus);
+    }
+
+    public  RefreshPlanCus selectRefreshPlanPageCusHashMap(HashMap hashMap){
+        return refreshPlanMapper.selectRefreshPlanPageCusHashMap(hashMap);
     }
 }

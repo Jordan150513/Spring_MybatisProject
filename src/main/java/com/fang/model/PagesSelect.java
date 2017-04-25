@@ -9,8 +9,8 @@ public class PagesSelect {
     private Integer pageSize;
     private Integer count;
 
-    private Integer fromIndex;
-    private Integer toIndex;
+//    private Integer fromIndex;
+//    private Integer toIndex;
 
     public Integer getPageNO() {
         return pageNO;
@@ -38,22 +38,22 @@ public class PagesSelect {
         this.count = count;
     }
 
-    public Integer getFromIndex() {
-        return fromIndex;
-    }
+//    public Integer getFromIndex() {
+//        return fromIndex;
+//    }
 
-    public void setFromIndex(Integer fromIndex) {
+//    public void setFromIndex(Integer fromIndex) {
+//
+//        this.fromIndex = fromIndex;
+//
+//    }
 
-        this.fromIndex = fromIndex;
+//    public Integer getToIndex() {
+//        return toIndex;
+//    }
 
-    }
-
-    public Integer getToIndex() {
-        return toIndex;
-    }
-
-    public void setToIndex(Integer toIndex) {
-
-        this.toIndex = toIndex;
-    }
+//    public void setToIndex(Integer toIndex) {
+//
+//        this.toIndex = toIndex;
+//    }
 }

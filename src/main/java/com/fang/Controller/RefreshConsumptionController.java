@@ -2,12 +2,14 @@ package com.fang.Controller;
 
 import com.fang.model.OperationResult;
 import com.fang.model.RefreshConsumption;
+import com.fang.model.RefreshConsumptionCus;
 import com.fang.service.RefreshConsumptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by qiaodandan on 2017/4/25.
@@ -39,5 +41,13 @@ public class RefreshConsumptionController {
         operationResult.setMessage(rs==1?"操作成功！":"操作失败！");
 
         return operationResult;
+    }
+
+    // 查询companyid的公司的消费记录 以及每条消费记录的刷新plan的详情
+    //      http://localhost:8055/dd/RefreshConsumption/selectAssociatedByCompanyId?companyId=1
+
+    @RequestMapping("RefreshConsumption/selectAssociatedByCompanyId")
+    List<RefreshConsumptionCus> selectAssociatedByCompanyId(Integer companyId){
+        return restConsumptionService.selectAssociatedByCompanyId(companyId);
     }
 }

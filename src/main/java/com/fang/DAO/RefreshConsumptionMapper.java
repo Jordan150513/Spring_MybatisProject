@@ -1,6 +1,9 @@
 package com.fang.DAO;
 
 import com.fang.model.RefreshConsumption;
+import com.fang.model.RefreshConsumptionCus;
+
+import java.util.List;
 
 public interface RefreshConsumptionMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,6 @@ public interface RefreshConsumptionMapper {
     int updateByPrimaryKeySelective(RefreshConsumption record);
 
     int updateByPrimaryKey(RefreshConsumption record);
+
+    List<RefreshConsumptionCus>  selectAssociatedByCompanyId(Integer id);
 }

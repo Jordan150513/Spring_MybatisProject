@@ -2,7 +2,7 @@ package com.fang.model;
 
 import java.util.Date;
 
-public class RefreshConsumption extends PagesSelect{
+public class RefreshConsumption{
     private Integer id;
 
     private Integer refreshplanid;

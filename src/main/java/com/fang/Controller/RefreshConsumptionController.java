@@ -3,12 +3,14 @@ package com.fang.Controller;
 import com.fang.model.OperationResult;
 import com.fang.model.RefreshConsumption;
 import com.fang.model.RefreshConsumptionCus;
+import com.fang.model.RefreshConsumptionCusPages;
 import com.fang.service.RefreshConsumptionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -46,8 +48,29 @@ public class RefreshConsumptionController {
     // 查询companyid的公司的消费记录 以及每条消费记录的刷新plan的详情
     //      http://localhost:8055/dd/RefreshConsumption/selectAssociatedByCompanyId?companyId=1
 
+
     @RequestMapping("RefreshConsumption/selectAssociatedByCompanyId")
     List<RefreshConsumptionCus> selectAssociatedByCompanyId(Integer companyId){
         return restConsumptionService.selectAssociatedByCompanyId(companyId);
     }
+
+    //      http://localhost:8055/dd/RefreshConsumption/selectAssociatedCountByCompanyId?companyId=1
+    @RequestMapping("RefreshConsumption/selectAssociatedCountByCompanyId")
+    public Integer selectAssociatedCountByCompanyId(Integer companyId){
+        return restConsumptionService.selectAssociatedCountByCompanyId(companyId);
+    }
+
+    //      http://localhost:8055/dd/RefreshConsumption/selectAssociatedByCompanyId?companyId=1&pageNO=1&pageSize=3
+    @RequestMapping("RefreshConsumption/RefreshConsumptionCusPages")
+    public RefreshConsumptionCusPages selectAssociatedByCompanyIdPages(Integer companyId,Integer pageNO, Integer pageSize){
+            HashMap<String,Integer> hashMap = new HashMap<String,Integer>();
+            hashMap.put("companyId",companyId);
+            hashMap.put("pageNO",pageNO);
+            hashMap.put("pageSize",pageSize);
+        RefreshConsumptionCusPages refreshConsumptionCusPages =  restConsumptionService.selectAssociatedByCompanyIdPages(hashMap);
+        refreshConsumptionCusPages.setPageNO(pageNO);
+        refreshConsumptionCusPages.setPageSize(pageSize);
+        return refreshConsumptionCusPages;
+    }
+
 }

@@ -27,6 +27,26 @@
     <result column="refreshPlan_remark" jdbcType="VARCHAR" property="refreshPlanRemark" />
   </resultMap>
 
+  <resultMap id="AssociatedSelectResultMapPages" type="com.fang.model.RefreshConsumptionCusPages">
+
+    <result column="count" jdbcType="INTEGER" property="count" />
+
+    <association property="list" resultMap="BaseResultMap">
+      <id column="id" jdbcType="INTEGER" property="id" />
+      <result column="refreshPlanId" jdbcType="INTEGER" property="refreshplanid" />
+      <result column="caseId" jdbcType="INTEGER" property="caseid" />
+      <result column="companyId" jdbcType="INTEGER" property="companyid" />
+      <result column="refreshType" jdbcType="VARCHAR" property="refreshtype" />
+      <result column="refreshTime" jdbcType="TIMESTAMP" property="refreshtime" />
+      <result column="soufunId" jdbcType="INTEGER" property="soufunid" />
+      <result column="createTime" jdbcType="TIME" property="createtime" />
+      <result column="isDel" jdbcType="BIT" property="isdel" />
+      <result column="refreshPlan_state" jdbcType="VARCHAR" property="refreshPlanState" />
+      <result column="refreshPlan_remark" jdbcType="VARCHAR" property="refreshPlanRemark" />
+    </association>
+
+  </resultMap>
+
   <sql id="Base_Column_List">
     id, refreshPlanId, caseId, companyId, refreshType, refreshTime, soufunId, createTime, 
     isDel
@@ -34,6 +54,11 @@
 
   <sql id="Base_Column_List_Associated">
     refreshConsumption.id, refreshConsumption.refreshPlanId, refreshConsumption.caseId, refreshConsumption.companyId, refreshConsumption.refreshType, refreshConsumption.refreshTime, refreshConsumption.soufunId, refreshConsumption.createTime,
+    refreshConsumption.isDel,refreshPlan.state AS refreshPlan_state,refreshPlan.remark AS refreshPlan_remark
+  </sql>
+
+  <sql id="Base_Column_List_Associated_pages">
+    COUNT(refreshConsumption.id) AS count,refreshConsumption.id, refreshConsumption.refreshPlanId, refreshConsumption.caseId, refreshConsumption.companyId, refreshConsumption.refreshType, refreshConsumption.refreshTime, refreshConsumption.soufunId, refreshConsumption.createTime,
     refreshConsumption.isDel,refreshPlan.state AS refreshPlan_state,refreshPlan.remark AS refreshPlan_remark
   </sql>
   <!--关联表的筛选查找 查找相应公司的消费记录 输入的是 公司的id 输出的是两个表的内容 每一条消费记录 以及消费记录所对应的消费的刷新plan的详细信息-->
@@ -44,6 +69,24 @@
       WHERE refreshConsumption.companyId = #{id,jdbcType=INTEGER} AND refreshConsumption.refreshPlanId = refreshPlan.id
 
   </select>
+
+  <!--关联表的筛选查找 获取总数-->
+  <select id="selectAssociatedCountByCompanyId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select count(*) as count from
+(select refreshConsumption.id,refreshConsumption.refreshPlanId,refreshConsumption.caseId,refreshConsumption.companyId,refreshConsumption.refreshType,refreshConsumption.refreshTime,refreshConsumption.soufunId,refreshConsumption.createTime,refreshConsumption.isDel,refreshPlan.state,refreshPlan.remark from refreshConsumption,refreshPlan where refreshConsumption.refreshPlanId = refreshPlan.id and refreshConsumption.companyId=#{companyId,jdbcType=INTEGER})
+as table1
+  </select>
+
+  <!--关联表的筛选查找 分页查找 包含总数-->
+  <select id="selectAssociatedByCompanyIdPages" parameterType="HashMap" resultMap="AssociatedSelectResultMapPages">
+    select
+    <include refid="Base_Column_List_Associated_pages" />
+    from refreshConsumption,refreshPlan
+    WHERE refreshConsumption.companyId = #{companyId,jdbcType=INTEGER} AND refreshConsumption.refreshPlanId = refreshPlan.id
+    limit #{fromIndex,jdbcType=INTEGER},#{toIndex,jdbcType=INTEGER}
+  </select>
+
+
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 

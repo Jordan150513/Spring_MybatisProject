@@ -29,4 +29,5 @@ public class RefreshConsumptionCus extends RefreshConsumption {
         this.refreshPlanRemark = refreshPlanRemark;
     }
 
+
 }

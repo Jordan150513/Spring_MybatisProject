@@ -2,7 +2,9 @@ package com.fang.DAO;
 
 import com.fang.model.RefreshConsumption;
 import com.fang.model.RefreshConsumptionCus;
+import com.fang.model.RefreshConsumptionCusPages;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface RefreshConsumptionMapper {
@@ -19,4 +21,8 @@ public interface RefreshConsumptionMapper {
     int updateByPrimaryKey(RefreshConsumption record);
 
     List<RefreshConsumptionCus>  selectAssociatedByCompanyId(Integer id);
+
+    RefreshConsumptionCusPages selectAssociatedByCompanyIdPages(HashMap hashMap);
+
+    public Integer selectAssociatedCountByCompanyId(Integer companyId);
 }

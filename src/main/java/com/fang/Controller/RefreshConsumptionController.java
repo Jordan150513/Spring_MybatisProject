@@ -66,7 +66,9 @@ public class RefreshConsumptionController {
             HashMap<String,Integer> hashMap = new HashMap<String,Integer>();
             hashMap.put("companyId",companyId);
             hashMap.put("fromIndex",(pageNO-1)*pageSize);
-            hashMap.put("toIndex",pageSize*pageSize);
+            hashMap.put("toIndex",pageNO*pageSize);
+            System.out.print(hashMap.get("fromIndex"));
+            System.out.print(hashMap.get("toIndex"));
         List<RefreshConsumptionCus> list=  restConsumptionService.selectAssociatedByCompanyIdPages(hashMap);
         RefreshConsumptionCusPages refreshConsumptionCusPages = new RefreshConsumptionCusPages();
         refreshConsumptionCusPages.setList(list);

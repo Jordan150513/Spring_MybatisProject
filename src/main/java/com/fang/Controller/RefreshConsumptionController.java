@@ -66,7 +66,8 @@ public class RefreshConsumptionController {
             HashMap<String,Integer> hashMap = new HashMap<String,Integer>();
             hashMap.put("companyId",companyId);
             hashMap.put("fromIndex",(pageNO-1)*pageSize);
-            hashMap.put("toIndex",pageNO*pageSize);
+            hashMap.put("toIndex",pageSize);
+            // 注意limit a,b 的含义 a 是起始基准，b是便宜量
             System.out.print(hashMap.get("fromIndex"));
             System.out.print(hashMap.get("toIndex"));
         List<RefreshConsumptionCus> list=  restConsumptionService.selectAssociatedByCompanyIdPages(hashMap);
